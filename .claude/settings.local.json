@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(docker exec mysql_master *)",
+      "Bash(docker run *)"
+    ]
+  }
+}

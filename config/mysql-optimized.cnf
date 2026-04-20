@@ -1,0 +1,72 @@
+[mysqld]
+# Connection settings for 1000+ users
+max_connections = 2000
+max_user_connections = 1800
+thread_cache_size = 200
+table_open_cache = 8000
+table_definition_cache = 4000
+
+# Memory optimizations
+innodb_buffer_pool_size = 4G
+innodb_buffer_pool_instances = 16
+innodb_log_file_size = 1G
+innodb_log_buffer_size = 128M
+innodb_flush_log_at_trx_commit = 2
+
+# Performance for complex queries
+tmp_table_size = 512M
+max_heap_table_size = 512M
+sort_buffer_size = 4M
+read_buffer_size = 2M
+read_rnd_buffer_size = 8M
+join_buffer_size = 8M
+
+# Connection timeouts
+wait_timeout = 600
+interactive_timeout = 600
+connect_timeout = 60
+net_read_timeout = 120
+net_write_timeout = 120
+
+# InnoDB performance tuning
+innodb_flush_method = O_DIRECT
+innodb_file_per_table = 1
+innodb_io_capacity = 4000
+innodb_io_capacity_max = 8000
+innodb_read_io_threads = 16
+innodb_write_io_threads = 16
+innodb_thread_concurrency = 0
+innodb_purge_threads = 4
+
+# Query optimization
+optimizer_search_depth = 62
+optimizer_prune_level = 1
+
+# Logging for monitoring
+slow_query_log = 1
+slow_query_log_file = /var/lib/mysql/slow.log
+long_query_time = 1
+log_queries_not_using_indexes = 0
+
+# Binary logging (for potential replication)
+log-bin = mysql-bin
+binlog-format = ROW
+expire_logs_days = 7
+max_binlog_size = 1G
+
+# Character set
+character-set-server = utf8mb4
+collation-server = utf8mb4_unicode_ci
+
+# Security
+sql_mode = STRICT_TRANS_TABLES,NO_ZERO_DATE,NO_ZERO_IN_DATE,ERROR_FOR_DIVISION_BY_ZERO
+
+# Disable SSL for easier connections
+require_secure_transport = OFF
+ssl = 0
+
+# Use native password for compatibility
+default_authentication_plugin = mysql_native_password
+
+# Disable performance schema for more memory
+performance_schema = OFF
